@@ -19,7 +19,6 @@ import java.io.Serializable;
 public class Endereco implements Serializable { //Serializable pra
 
 
-
     private String rua;
     private Long numero;
     private String bairro;
