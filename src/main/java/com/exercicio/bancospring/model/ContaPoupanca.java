@@ -35,4 +35,12 @@ public class ContaPoupanca {
         return saldo.doubleValue();
     }
 
+    @Override
+    public String toString() {
+        return "ContaPoupanca{" +
+                "matricula= " +cliente.getIdCliente() +
+                "cliente=" + cliente.getNome() +
+                ", saldo=" + saldo +
+                '}';
+    }
 }
