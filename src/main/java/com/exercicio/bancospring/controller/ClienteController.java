@@ -30,4 +30,9 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.addCliente(cliente));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Cliente> buscaClientePorId(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.clientePorId(id));
+    }
+
 }
