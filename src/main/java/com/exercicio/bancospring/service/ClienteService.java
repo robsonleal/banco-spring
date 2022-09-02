@@ -1,6 +1,7 @@
 package com.exercicio.bancospring.service;
 
 
+import com.exercicio.bancospring.exception.NaoEncontradoException;
 import com.exercicio.bancospring.model.Cliente;
 import com.exercicio.bancospring.repository.ClienteRepository;
 import org.springframework.beans.BeanUtils;
@@ -29,19 +30,16 @@ public class ClienteService {
     //Deleta cliente por id
     public void deletaCliente(Long id) {
 
-//        Cliente cliente = clienteRepository.findById(id).orElseThrow( () -> new EntidadeNaoEncontradaException("Id de cliente não encontrado"));
-//
-//        clienteRepository.deleteById(cliente.getIdCliente());
+    Cliente cliente = validaClientePorId(id);
 
-        clienteRepository.deleteById(id);
+    clienteRepository.deleteById(cliente.getIdCliente());
+
     }
 
     //Localiza cliente por ID
     public Cliente clientePorId(Long id) {
 
-        Cliente cliente = clienteRepository.findById(id).get();
-
-//        Cliente cliente = clienteRepository.findById(id).orElseThrow( () -> new EntidadeNaoEncontradaException("Id de cliente não encontrado"));
+     Cliente cliente = validaClientePorId(id);
 
         return cliente;
     }
@@ -62,6 +60,11 @@ public class ClienteService {
     //Localizar cliente por cidade
     //Localizar Cliente por tipo de conta
 
+    public Cliente validaClientePorId(Long id){
+        Cliente cliente = clienteRepository.findById(id).orElseThrow( () -> new NaoEncontradoException ("Id de cliente não encontrado"));
+
+        return cliente;
+    }
 
 
 }
